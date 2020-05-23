@@ -7,9 +7,11 @@ public class MyCharacterController : MonoBehaviour
     Animator anim;
     CharacterController charController;
 
-    Vector3 lastVec = Vector3.zero;
+    Vector3 lastVec = Vector3.forward;
 
     public float speed;
+
+    bool isGrounded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,10 @@ public class MyCharacterController : MonoBehaviour
     void Update()
     {
         Vector3 moveVec = new Vector3(Input.GetAxisRaw("Horizontal"), 0 , Input.GetAxisRaw("Vertical")).normalized;
-        charController.Move(moveVec * Time.deltaTime * speed);
+
+        Vector3 gravVec = charController.isGrounded ? Vector3.zero : new Vector3(0, -10, 0);
+
+        charController.Move((moveVec * Time.deltaTime * speed) + (gravVec * Time.deltaTime));
 
         if (moveVec != Vector3.zero)
         {
@@ -34,8 +39,6 @@ public class MyCharacterController : MonoBehaviour
         {
             anim.SetBool("IsMoving", false);
         }
-
-        
 
         transform.forward = lastVec;
     }
