@@ -59,7 +59,11 @@ The following packages were updated:
 The following packages were removed:
   com.unity.package-manager-ui@2.2.0
 
+<<<<<<< HEAD
 === Sun May 24 18:54:23 2020
+=======
+=== Sun May 24 18:36:49 2020
+>>>>>>> ProceduralGeneration
 
 Packages were changed.
 Update Mode: updateDependencies
