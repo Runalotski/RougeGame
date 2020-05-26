@@ -33,6 +33,30 @@ public class DungeonNode
                this.x == other.x &&
                this.z == other.z;
     }
+
+    public static bool operator ==(DungeonNode lhs, DungeonNode rhs)
+    {
+        // Check for null on left side.
+        if (Object.ReferenceEquals(lhs, null))
+        {
+            if (Object.ReferenceEquals(rhs, null))
+            {
+                // null == null = true.
+                return true;
+            }
+
+            // Only the left side is null.
+            return false;
+        }
+        // Equals handles case of null on right side.
+        return lhs.Equals(rhs);
+    }
+
+    public static bool operator !=(DungeonNode lhs, DungeonNode rhs)
+    {
+        return !(lhs == rhs);
+    }
+
     public override int GetHashCode()
     {
         return this.x ^ this.z;

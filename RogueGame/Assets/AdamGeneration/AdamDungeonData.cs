@@ -13,25 +13,24 @@ public class AdamDungeonData
 
     public int[,] grid = new int[GridX, GridZ];
 
+    public DungeonNode SpawnPoint = new DungeonNode(0,0);
+
     public List<DungeonNode> path;
 
     public AdamDungeonData(int length)
     {
-        CreatePath(length, GridX / 2, GridZ / 2);
         InitGrid();
+        SpawnPoint = new DungeonNode(GridX / 2, GridX / 2);
+        CreatePath(length, SpawnPoint.x, SpawnPoint.z);
     }
 
-    [System.Obsolete("Probably wont need this any more")]
     void InitGrid()
     {
         for (int i = 0; i < GridX; i++)
         {
             for (int j = 0; j < GridZ; j++)
             {
-                if (path.Contains(new DungeonNode(i, j)))
-                    grid[i, j] = (int)AdamDungeonManager.TileTypes.Floor;
-                else
-                    grid[i, j] = (int)AdamDungeonManager.TileTypes.Wall;
+                grid[i, j] = 0;
             }
         }
 
@@ -52,6 +51,9 @@ public class AdamDungeonData
         int pathStep = 0;
 
         AddToPath(path, pathStep, length);
+        AddPathToGrid(path);
+
+        Debug.Log("Path Added to Grid");
     }
 
     void AddToPath(List<DungeonNode> currentPath, int pathStep, int maxPathLegnth)
@@ -103,6 +105,53 @@ public class AdamDungeonData
                 return;
             }
         }    
+    }
+
+    public void AddPathToGrid(List<DungeonNode> _path)
+    {
+        for(int i = 0; i < _path.Count; i++)
+        {
+            if (i == 0)
+            {
+                grid[_path[i].x, _path[i].z] = GetConnectionFlag(path[i], new DungeonNode[] {path[i + 1]});
+            }
+            else if(i == _path.Count - 1)
+            {
+                grid[_path[i].x, _path[i].z] = GetConnectionFlag(path[i], new DungeonNode[] { path[i - 1] });
+            }
+            else
+            {
+                grid[_path[i].x, _path[i].z] = GetConnectionFlag(path[i], new DungeonNode[] { path[i + 1], path[i - 1] });
+            }
+        }
+    }
+
+    int GetConnectionFlag(DungeonNode node, DungeonNode[] connectedNodes)
+    {
+        int connecitonFlag = 0;
+
+        DungeonNode east = new DungeonNode(node.x + 1, node.z);
+        DungeonNode west = new DungeonNode(node.x - 1, node.z);
+        DungeonNode north = new DungeonNode(node.x, node.z + 1);
+        DungeonNode south = new DungeonNode(node.x, node.z - 1);
+
+        for(int i = 0; i < connectedNodes.Length; i++)
+        {
+            if (connectedNodes[i] == north)
+                connecitonFlag |= 1 << 0;
+
+            if (connectedNodes[i] == east)
+                connecitonFlag |= 1 << 1;
+
+            if (connectedNodes[i] == south)
+                connecitonFlag |= 1 << 2;
+
+            if (connectedNodes[i] == west)
+                connecitonFlag |= 1 << 3;
+        }
+
+        return connecitonFlag;
+
     }
 
     int FloodFillArea(DungeonNode fillNode, List<DungeonNode> path, int fillLimit)

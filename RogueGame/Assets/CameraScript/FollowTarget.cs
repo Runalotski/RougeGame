@@ -52,12 +52,19 @@ public class FollowTarget : MonoBehaviour
     /// </summary>
     float followPitch;
 
+
+    bool loggedNoTarget = false;
+
     // Update is called once per frame
     void Update(){
 
-        if (target != null){
+        if (target != null)
+        {
 
-            switch (trackMode) {
+            loggedNoTarget = false;
+
+            switch (trackMode)
+            {
                 case TrackModes.locationSet:
                     PositionSetTrack();
                     break;
@@ -66,8 +73,11 @@ public class FollowTarget : MonoBehaviour
                     break;
             }
         }
-        else
+        else if (!loggedNoTarget)
+        {
+            loggedNoTarget = true;
             Debug.LogWarning(this.gameObject + " has not target to follow");
+        }
     }
 
     /// <summary>
