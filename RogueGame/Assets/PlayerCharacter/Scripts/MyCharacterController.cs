@@ -11,8 +11,6 @@ public class MyCharacterController : MonoBehaviour
 
     public float speed;
 
-    bool isGrounded = false;
-
     // Start is called before the first frame update
     void Start()
     {

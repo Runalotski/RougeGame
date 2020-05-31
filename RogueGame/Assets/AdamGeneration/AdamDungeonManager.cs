@@ -4,35 +4,47 @@ using UnityEngine;
 
 public class AdamDungeonManager : MonoBehaviour
 {
-    public enum TileTypes { Floor, Wall};
+    public enum TileTypes { Floor, Wall };
 
     public Transform player;
 
     public static AdamDungeonData dungeonData;
     public AdamDungeonRenderer dungeonRenderer;
 
+    public AdamDungeonData.DungeonTypes dungeonType;
+
     public float DungeonScale;
-    public int DungeonLength;
+    public int RoomCount;
+
+    public static float dungeonScale;
 
     // Start is called before the first frame update
     void Start()
     {
-        Random.seed = (int)System.DateTime.Now.Ticks;
+        dungeonScale = DungeonScale;
 
-        List<DungeonNode> test = new List<DungeonNode>();
+        Random.InitState((int)System.DateTime.Now.Ticks);
 
-        dungeonData = new AdamDungeonData(DungeonLength);
+        dungeonData = new AdamDungeonData(dungeonType, RoomCount);
 
-        dungeonRenderer.Render(dungeonData.grid, DungeonScale);
+        dungeonRenderer.SpawnRoomAssets(dungeonData.grid, DungeonScale, dungeonData.SpawnPoint, dungeonData.bossRoom);
 
-        //player.GetComponent<CharacterController>(). enabled = false;
         player.position = new Vector3(dungeonData.SpawnPoint.x * DungeonScale, 0, dungeonData.SpawnPoint.z * DungeonScale);
-        //Camera.main.transform.position = player.position + new Vector3(0, 4, 4);
-        //player.GetComponent<CharacterController>().enabled = true;
+    }
+
+    private void Update()
+    {
+        //dungeonRenderer.DisplayerPlayerRoom(dungeonData.grid, DungeonScale, dungeonData.SpawnPoint, dungeonData.bossRoom, player);
+    }
+
+    public static Vector3 GetDungeonPosition(Vector3 position)
+    {
+        return new Vector3((int)((position.x - (dungeonScale / 2)) / dungeonScale), 0, (int)((position.z - (dungeonScale / 2)) / dungeonScale));
     }
 
     private void OnDrawGizmos()
     {
+        /*
         if (dungeonData != null && dungeonData.HasPath())
         {
             for (int i = 0; i < dungeonData.path.Count - 1; i++)
@@ -50,6 +62,6 @@ public class AdamDungeonManager : MonoBehaviour
 
             Gizmos.DrawSphere(new Vector3((dungeonData.path[dungeonData.path.Count - 1].x) * DungeonScale, 0, (dungeonData.path[dungeonData.path.Count - 1].z) * DungeonScale), 0.1f * DungeonScale);
         }
-
+        */
     }
 }

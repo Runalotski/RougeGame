@@ -4,21 +4,48 @@ using UnityEngine;
 
 public class DungeonNode
 {
-    public List<DungeonNode> childNodes;
+    /// <summary>
+    /// Referece to connected Rooms
+    /// </summary>
+    public List<DungeonNode> connections;
+
+    /// <summary>
+    /// Flag for position of room 1 = North, 2 = East, 4 = South, 8 = West
+    /// </summary>
+    public byte roomShapeFlag;
+
+    public Transform transform;
+
+    /// <summary>
+    /// Parent just the first connection betwen room establisehd == connectios[0]
+    /// </summary>
+    public DungeonNode parent {
+        get { return connections[0]; }
+        set { SetParent(value); }
+    }
 
     public int x;
     public int z;
 
-    public DungeonNode(int x, int z)
+    public DungeonNode(int x, int z, DungeonNode parent, byte roomShapeFlag = 0)
     {
+        this.connections = new List<DungeonNode>();
+        this.connections.Add(parent);
+
+        this.roomShapeFlag = roomShapeFlag;
+
         this.x = x;
         this.z = z;
     }
 
-    public DungeonNode(Vector2 pos)
+    public DungeonNode(int x, int z, byte roomShapeFlag = 0)
     {
-        this.x = (int)pos.x;
-        this.z = (int)pos.y;
+        connections = new List<DungeonNode>();
+
+        this.roomShapeFlag = roomShapeFlag;
+
+        this.x = x;
+        this.z = z;
     }
 
     public override bool Equals(object obj)
@@ -60,8 +87,26 @@ public class DungeonNode
     public override int GetHashCode()
     {
         return this.x ^ this.z;
-    }public override string ToString()
+    }
+
+    public override string ToString()
     {
         return "DungeionNode(" + this.x + "," + this.z + ")";
+    }
+
+    private void SetParent(DungeonNode node)
+    {
+        if (connections == null)
+            connections = new List<DungeonNode>();
+
+        if (connections.Count == 0)
+            connections.Add(node);
+        else
+            connections[0] = node;
+    }
+
+    public bool HasDoor(AdamDungeonData.Direction dir)
+    {
+        return (roomShapeFlag & (1 << (int)dir)) == (1 << (int)dir);
     }
 }
