@@ -235,14 +235,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1087894784}
   dungeonRenderer: {fileID: 2085462802}
-  DungeonScale: 40
-  DungeonLength: 5
+  dungeonType: 1
+  DungeonScale: 6
+  RoomCount: 20
 --- !u!4 &1087894784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5453794301185508615, guid: b3d23be3e536cbb469502536c089567b,
     type: 3}
   m_PrefabInstance: {fileID: 696255878}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1324666841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1324666843}
+  - component: {fileID: 1324666842}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1324666842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324666841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4c51f184870b84ca0f665845111d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1087894784}
+--- !u!4 &1324666843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324666841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 200.01086, y: 1.0256033, z: 200}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1545218756
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,8 +480,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1087894784}
   trackMode: 1
-  heightFocusOffest: 0.19
-  followDistance: 10
+  heightFocusOffest: 1
+  followDistance: 100
   followOrbitAngle: 0
   targetAngle: 45
   followHeight: 10

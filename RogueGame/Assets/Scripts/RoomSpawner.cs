@@ -57,7 +57,7 @@ public class RoomSpawner : MonoBehaviour
 
     public void Update()
     {
-        Object[] t = GameObject.FindObjectsOfTypeAll(typeof(RoomSpawner));
+        Object[] t = Resources.FindObjectsOfTypeAll(typeof(RoomSpawner));
         foreach (Object obj in t)
         {
             RoomSpawner G = obj as RoomSpawner;

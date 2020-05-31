@@ -14,7 +14,7 @@ public class HandleWeapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Fire1"))
+        if(Input.GetButton("Fire1") && heldWeapon != null)
         {
             heldWeapon.GetComponent<IWeaponClass>().Attack();
         }
@@ -22,13 +22,8 @@ public class HandleWeapons : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log(hit.transform.name);
-
-        Debug.Log("Component " + hit.transform.root.GetComponent<MonoBehaviour>());
-
         if (hit.transform.root.GetComponent<MonoBehaviour>() is IWeaponClass)
         {
-            Debug.Log("Weapon Picked up");
             if(heldWeapon == null)
             {
                 PickupWeapon(hit.transform.root);
