@@ -678,7 +678,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f62b52b2d4b721742a0bc5c6b4db468d, type: 2}
+  - {fileID: 2100000, guid: 7c3aada27ae4ab447af3dab8a74d60bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -794,9 +794,10 @@ GameObject:
   - component: {fileID: 5453794302048335690}
   - component: {fileID: 5453794302048335689}
   - component: {fileID: 5453794302048335691}
+  - component: {fileID: 800796427890742587}
   m_Layer: 0
   m_Name: Ethan
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -880,6 +881,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab14b1310aead649ab88eb1b4d11a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &800796427890742587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453794301185218919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c4ed7002903b642a8b8f674cd912a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {x: 0, y: 0, z: 0}
+  damageResistance: {fileID: 11400000, guid: 606daf075284dbb4caa5c87be4c36924, type: 2}
+  playerManager: {fileID: 0}
 --- !u!1 &5453794301185218929
 GameObject:
   m_ObjectHideFlags: 0

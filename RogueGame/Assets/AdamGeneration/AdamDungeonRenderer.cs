@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AdamDungeonRenderer : MonoBehaviour
 {
@@ -16,8 +17,9 @@ public class AdamDungeonRenderer : MonoBehaviour
             {
                 if (gridData[i, j].roomShapeFlag > 0)
                 {
-                    gridData[i, j].transform = Instantiate(Resources.Load<Transform>(pathToRoomPrefabs + gridData[i, j].roomShapeFlag), new Vector3(i * scale, 0, j * scale), Quaternion.identity) as Transform;
+                    gridData[i, j].transform = Instantiate(Resources.Load<Transform>(pathToRoomPrefabs + gridData[i, j].roomShapeFlag), new Vector3(i * scale, 0, j * scale), Quaternion.identity, AdamDungeonManager.dungeonParent) as Transform;
                     gridData[i, j].transform.Find("RoomGraphics").localScale = new Vector3(scale,scale,scale);
+                    gridData[i, j].transform.name = ("Room(" + i + "," + j + ")");
 
                     if (gridData[i, j].x == startRoom.x && gridData[i, j].z == startRoom.z)
                         MakeTestRoomChangeColour(gridData[startRoom.x, startRoom.z].transform, new Color(0, 1, 0));

@@ -6,6 +6,9 @@ public class BowProjectileScript : MonoBehaviour
 {
 
     public float speed;
+    public float baseDamage;
+    public DamageTypes damageType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,10 @@ public class BowProjectileScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        Destroy(this.gameObject);
+        if(col.transform.root.tag == "Enemy")
+        {
+            col.transform.root.GetComponent<MonsterActor>().TakeDamage(baseDamage, damageType);
+            Destroy(this.gameObject);
+        }
     }
 }

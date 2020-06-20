@@ -16,7 +16,7 @@ public class AdamDungeonData
 
     public DungeonNode SpawnPoint = new DungeonNode(0, 0);
 
-    //public List<DungeonNode> path;
+    public List<DungeonNode> spawnedRooms = new List<DungeonNode>();
 
     public DungeonNode bossRoom;
 
@@ -32,6 +32,8 @@ public class AdamDungeonData
             CreatePath(SpawnPoint.x, SpawnPoint.z, length);
         else if (type == DungeonTypes.Dungeon)
             CreateDungeon(SpawnPoint.x, SpawnPoint.z, length);
+
+        grid[SpawnPoint.x, SpawnPoint.z].enemiesCleard = true;
     }
 
     void InitGrid(int x, int z)
@@ -74,6 +76,7 @@ public class AdamDungeonData
     {
         //set start room shape  
         grid[x, z].roomShapeFlag = (byte)Random.Range(1, 16);
+        spawnedRooms.Add(grid[x, z]);
 
         List<DungeonNode> roomsToCreate = new List<DungeonNode>();
         roomsToCreate.AddRange(GetEmptyConnection(new DungeonNode(x, z)));
@@ -211,7 +214,7 @@ public class AdamDungeonData
                     newRoomConnections |= 1 << 3;
 
                 grid[newRoom.x, newRoom.z].roomShapeFlag = newRoomConnections;
-                //Debug.Log("(" + newRoom.x + "," + newRoom.z + ") = " + grid[newRoom.x, newRoom.z] + ", Parent = (" + newRoom.parent.x + "," + newRoom.parent.z + ")");
+                spawnedRooms.Add(grid[newRoom.x, newRoom.z]);
 
                 roomsToCreate.AddRange(GetEmptyConnection(newRoom, roomsToCreate));
                 currentSize++;
@@ -360,6 +363,8 @@ public class AdamDungeonData
                 grid[_path[i].x, _path[i].z].roomShapeFlag = GetConnectionFlag(_path[i], new DungeonNode[] { _path[i + 1], _path[i - 1] });
             }
         }
+
+        spawnedRooms.AddRange(_path);
     }
 
     byte GetConnectionFlag(DungeonNode node, DungeonNode[] connectedNodes)

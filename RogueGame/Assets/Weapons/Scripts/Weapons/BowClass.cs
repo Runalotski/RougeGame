@@ -29,7 +29,7 @@ public class BowClass : MonoBehaviour, IWeaponClass
             RaycastHit hit;
             Vector3 shootDir = Vector3.zero;
             float angle = 0;
-            if (Physics.Raycast(mouseRay, out hit, 100))
+            if (Physics.Raycast(mouseRay, out hit, 200))
             {
                 shootDir = hit.point - transform.position;
                 shootDir.y = 0;

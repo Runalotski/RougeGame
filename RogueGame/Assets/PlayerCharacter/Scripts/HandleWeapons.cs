@@ -31,11 +31,11 @@ public class HandleWeapons : MonoBehaviour
         }
     }
 
-    void PickupWeapon(Transform weaponT)
+    public void PickupWeapon(Transform weaponT)
     {
         heldWeapon = weaponT;
         weaponT.parent = this.transform;
-        weaponT.position = new Vector3(0, 2, 0);
+        weaponT.position = transform.position + new Vector3(0, 2, 0);
         weaponT.rotation = Quaternion.identity;
         weaponT.GetComponent<IWeaponClass>().owner = this.transform;
     }
