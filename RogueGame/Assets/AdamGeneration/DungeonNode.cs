@@ -24,6 +24,14 @@ public class DungeonNode
         set { SetParent(value); }
     }
 
+    /// <summary>
+    /// True when all the enemies have been killed in a room
+    /// </summary>
+    public bool enemiesCleard = false;
+    public bool enemiesAreActive = false;
+
+    public List<Transform> enemies = new List<Transform>();
+
     public int x;
     public int z;
 
