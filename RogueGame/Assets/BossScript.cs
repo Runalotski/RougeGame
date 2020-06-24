@@ -23,8 +23,6 @@ public class BossScript : MonoBehaviour
 
     Vector3 ColNormal;
 
-
-    // Start is called before the first frame update
     private void Start()
     {
         StartMoving();
