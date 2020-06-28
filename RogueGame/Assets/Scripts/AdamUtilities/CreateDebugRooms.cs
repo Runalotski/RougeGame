@@ -68,7 +68,7 @@ public class CreateDebugRooms : MonoBehaviour
             foreach(Transform t in toSave)
             {
                 string localPath = "Assets/Resources/TileSets/DebugTiles/" + t.name + ".prefab";
-                PrefabUtility.SaveAsPrefabAsset(t.gameObject, localPath);
+                //PrefabUtility.SaveAsPrefabAsset(t.gameObject, localPath);
             }
 
             SavePrefabs = false;

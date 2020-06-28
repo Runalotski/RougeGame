@@ -26,6 +26,8 @@ public class DungeonManager : MonoBehaviour
 
     public Transform doors;
 
+    public Transform gameManager;
+
     private void Awake()
     {
         dungeonParent = DungeonParent;
@@ -43,8 +45,6 @@ public class DungeonManager : MonoBehaviour
 
         dungeonRenderer.SpawnRoomAssets(dungeonData.grid, DungeonScale, dungeonData.SpawnPoint, dungeonData.bossRoom);
 
-        player.position = new Vector3(dungeonData.SpawnPoint.x * DungeonScale, 0, dungeonData.SpawnPoint.z * DungeonScale);
-
         dungeonParent.GetComponent<NavigationBaker>().AddSurfacesOfChildren();
 
         dungeonParent.GetComponent<NavigationBaker>().Build();
@@ -61,21 +61,29 @@ public class DungeonManager : MonoBehaviour
 
         Mobspawner.GetComponent<MobSpawner>().SpawnAllMobsInDungeon(Mobrooms, dungeonData.bossRoom, dungeonScale);
 
+        player.position = new Vector3(dungeonData.SpawnPoint.x * DungeonScale, 0, dungeonData.SpawnPoint.z * DungeonScale);
+
     }
 
     private void Update()
     {
-        DoorsFollowPlayer();
-
-        DungeonNode playerNode = GetPlayerDungeonNode();
-
-        if (!playerNode.enemiesCleard && !playerNode.enemiesAreActive)
+        if (player != null)
         {
-            playerNode.enemiesAreActive = true;
-            InitiateEnemies(playerNode);
-        }
+            DoorsFollowPlayer();
 
-        IsRoomClear(playerNode);
+            DungeonNode playerNode = GetPlayerDungeonNode();
+
+            if (!playerNode.enemiesCleard && !playerNode.enemiesAreActive)
+            {
+                playerNode.enemiesAreActive = true;
+                InitiateEnemies(playerNode);
+            }
+
+            if(IsRoomClear(playerNode) && playerNode == dungeonData.bossRoom)
+            {
+                gameManager.GetComponent<GameManager>().BossDefeated();
+            }
+        }
     }
 
     public bool IsRoomClear(DungeonNode node)
@@ -90,6 +98,7 @@ public class DungeonManager : MonoBehaviour
         }
 
         node.enemiesCleard = true;
+
         return true;
     }
 
@@ -121,6 +130,7 @@ public class DungeonManager : MonoBehaviour
 
     public DungeonNode GetPlayerDungeonNode()
     {
+        
         Vector3 playerPos = PlayerDungeonPos();
         return dungeonData.grid[(int)playerPos.x, (int)playerPos.z];
     }
@@ -132,10 +142,16 @@ public class DungeonManager : MonoBehaviour
 
     public void DoorsFollowPlayer()
     {
-        DungeonNode playerRoom = GetPlayerDungeonNode();
+        if (player != null && doors != null)
+        {
+            DungeonNode playerRoom = GetPlayerDungeonNode();
 
-        doors.transform.position = playerRoom.transform.position;
-        DoorsOpen(playerRoom.enemiesCleard);
+            if (playerRoom != null && playerRoom.transform != null)
+            {
+                doors.transform.position = playerRoom.transform.position;
+                DoorsOpen(playerRoom.enemiesCleard);
+            }
+        }
     }
 
     public void DoorsOpen(bool open)

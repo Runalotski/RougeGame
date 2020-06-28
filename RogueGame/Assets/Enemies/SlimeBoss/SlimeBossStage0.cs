@@ -15,6 +15,9 @@ public class SlimeBossStage0 : MonsterActor, IBossStageEntity
 
     public BossActor ParentBoss { get; set; }
 
+    public float damagePerHit;
+    bool hitPlayerThisFrame = false;
+
     void Awake()
     {
         float rnd = Random.Range(0.2f, 0.8f);
@@ -40,13 +43,21 @@ public class SlimeBossStage0 : MonsterActor, IBossStageEntity
 
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         LastFrameVelocity = rb.velocity;
+
+        if (rb.velocity.magnitude == 0 && LastFrameVelocity.magnitude == 0)
+        {
+            Debug.LogError("I got stuck so I called start moving again");
+            StartMoving();
+        }
+
+        if(Mathf.Abs(rb.velocity.x) < 0.1f || Mathf.Abs(rb.velocity.z) < 0.1f)
+        {
+            Debug.LogError("I am not moving in an intresting way so randomized my direction");
+            StartMoving();
+        }
+
         CollidedThisFrame = false;
-
-    }
-
-    void LateUpdate()
-    {
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        hitPlayerThisFrame = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -57,6 +68,13 @@ public class SlimeBossStage0 : MonsterActor, IBossStageEntity
         }
         Bounce(collision.contacts[0].normal);
         CollidedThisFrame = true;
+
+        //if we collide with the player deal damage to it
+        if (collision.transform.root.tag == "Player" && !hitPlayerThisFrame)
+        {
+            collision.transform.root.GetComponent<PlayerActor>().TakeDamage(damagePerHit, DamageTypes.Poison);
+            hitPlayerThisFrame = transform;
+        }
     }
 
     private void Bounce(Vector3 collisionNormal)
@@ -78,6 +96,7 @@ public class SlimeBossStage0 : MonsterActor, IBossStageEntity
 
     public override void Die()
     {
+        rb.detectCollisions = false;
         EntityDeath(gameObject);
     }
 

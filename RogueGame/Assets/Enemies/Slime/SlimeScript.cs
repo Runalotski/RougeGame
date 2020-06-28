@@ -21,7 +21,7 @@ public class SlimeScript : MonsterActor
     void Update()
     {
         //if target is in the same room move to collide with it
-        if (agent.enabled && dungeonManager.PlayerDungeonPos() == room)
+        if (agent.enabled && target != null && dungeonManager.PlayerDungeonPos() == room)
         {
             agent.destination = dungeonManager.PlayerTransform().position;
             agent.isStopped = false;

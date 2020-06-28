@@ -12,8 +12,8 @@ public class SlimeBoss : BossActor
                 CreateBossEnetity(bossStages.stages[0].bossEntitiesPrefabs[0], spawnPosition + new Vector3(0,0.5f,0));
                 break;
             case 1:
-                CreateBossEnetity(bossStages.stages[1].bossEntitiesPrefabs[0], spawnPosition);
-                CreateBossEnetity(bossStages.stages[1].bossEntitiesPrefabs[1], spawnPosition + new Vector3(2f, 0, -2f));
+                CreateBossEnetity(bossStages.stages[1].bossEntitiesPrefabs[0], bossStages.stages[0].deathLocations[0] + new Vector3(-2f, 0, 0));
+                CreateBossEnetity(bossStages.stages[1].bossEntitiesPrefabs[1], bossStages.stages[0].deathLocations[0] + new Vector3(2f, 0, 0));
                 break;
         }
     }

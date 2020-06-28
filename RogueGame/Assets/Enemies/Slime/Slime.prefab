@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {x: 0, y: 0, z: 0}
-  maxHealth: 1
+  maxHealth: 30
   health: 0
   speed: 4
   damageResistance: {fileID: 11400000, guid: 5a06c01dbecbbc046a2269aab7bae0f7, type: 2}

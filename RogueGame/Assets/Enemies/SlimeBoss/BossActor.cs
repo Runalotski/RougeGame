@@ -38,7 +38,9 @@ public abstract class BossActor : MonsterActor
 
     public void DestroyEntity(GameObject g)
     {
+        bossStages.GetCurrentStage().deathLocations.Add(g.transform.position);
         Destroy(g);
+        
         if (bossStages.IsCurrentStageComplete())
             StageCompleted();
     }

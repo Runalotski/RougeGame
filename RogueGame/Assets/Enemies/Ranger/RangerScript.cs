@@ -8,7 +8,7 @@ public class RangerScript : MonsterActor
     public Transform projectile;
 
     bool canAttack = false;
-    private IEnumerator coroutine;
+    //private IEnumerator coroutine;
 
     /// <summary>
     /// How many times a second will the wepon attack
@@ -32,7 +32,7 @@ public class RangerScript : MonsterActor
     void Update()
     {
         //If player target is in the same 2room attack it.
-        if (agent.enabled && dungeonManager.PlayerDungeonPos() == room && canAttack)
+        if (agent.enabled && target != null && dungeonManager.PlayerDungeonPos() == room && canAttack)
         {
                 Vector3 shootDir = Vector3.zero;
                 float angle = 0;

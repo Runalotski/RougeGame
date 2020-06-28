@@ -16,6 +16,9 @@ public class BossStages : ScriptableObject
 
         [System.NonSerialized]
         public List<Transform> activeEntities = new List<Transform>();
+
+        [System.NonSerialized]
+        public List<Vector3> deathLocations = new List<Vector3>();
     }
 
     public List<Stage> stages = new List<Stage>();
