@@ -17,7 +17,7 @@ public class PlayerActor : Actor
         health -= damageResistance.CalculateDamagetoTake(damage, damageType);
     }
 
-    protected override void Die()
+    public override void Die()
     {
         Destroy(gameObject);
     }

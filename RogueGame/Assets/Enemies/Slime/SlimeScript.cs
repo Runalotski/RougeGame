@@ -5,16 +5,8 @@ using UnityEngine.AI;
 
 public class SlimeScript : MonsterActor
 {
-    public AdamDungeonManager dungeonManager;
-
-    public Transform Player;
-
-
-    Vector3 returnPos = Vector3.zero;
 
     public float damagePerSecond;
-
-    public float MaxHealth;
 
     private void Awake()
     {
@@ -23,37 +15,24 @@ public class SlimeScript : MonsterActor
 
     private void Start()
     {
-        Player = dungeonManager.PlayerTransform();
-        returnPos = transform.position;
+        target = dungeonManager.PlayerTransform();
     }
 
     void Update()
     {
-        if (agent.enabled)
+        //if target is in the same room move to collide with it
+        if (agent.enabled && dungeonManager.PlayerDungeonPos() == room)
         {
-            if (dungeonManager.PlayerDungeonPos() == room)
-            {
-                agent.destination = dungeonManager.PlayerTransform().position;
-                agent.isStopped = false;
-
-            }
-            else
-            {
-                transform.GetComponent<NavMeshAgent>().SetDestination(returnPos);
-            }
+            agent.destination = dungeonManager.PlayerTransform().position;
+            agent.isStopped = false;
         }
     }
 
+
     private void OnTriggerStay(Collider collision)
     {
+        //if we collide with the player deal damage to it
         if (collision.transform.root.tag == "Player")
             collision.transform.root.GetComponent<PlayerActor>().TakeDamage(damagePerSecond * Time.deltaTime, DamageTypes.Poison);
-    }
-
-    protected override void init()
-    {
-        maxHealth = MaxHealth;
-        health = MaxHealth;
-        agent = transform.GetComponent<NavMeshAgent>();
     }
 }

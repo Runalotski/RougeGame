@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8714472988845936179}
+  - component: {fileID: 1750889841768422394}
   - component: {fileID: 343634927768845375}
   - component: {fileID: 1307423099261285760}
-  - component: {fileID: 1750889841768422394}
   m_Layer: 0
   m_Name: Ranger
   m_TagString: Enemy
@@ -34,6 +34,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1750889841768422394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3770952625732514886}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de95af6aa6ce7134884cac3110c55954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {x: 0, y: 0, z: 0}
+  maxHealth: 1
+  health: 0
+  speed: 0
+  damageResistance: {fileID: 11400000, guid: f26ada36012b1e041a9c590d06c3799b, type: 2}
+  dungeonManager: {fileID: 0}
+  useNavMeshOnSpawn: 1
+  target: {fileID: 0}
+  projectile: {fileID: 1255940035986410291, guid: 327314ae3e93ab243939f466a170705b,
+    type: 3}
+  _attackSpeed: 1
 --- !u!195 &343634927768845375
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -72,27 +95,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1750889841768422394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3770952625732514886}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de95af6aa6ce7134884cac3110c55954, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  room: {x: 0, y: 0, z: 0}
-  health: 0
-  damageResistance: {fileID: 11400000, guid: f26ada36012b1e041a9c590d06c3799b, type: 2}
-  MaxHealth: 100
-  dungeonManager: {fileID: 0}
-  Player: {fileID: 0}
-  projectile: {fileID: 1255940035986410291, guid: 327314ae3e93ab243939f466a170705b,
-    type: 3}
-  _attackSpeed: 1
 --- !u!1 &7408623813186975412
 GameObject:
   m_ObjectHideFlags: 0

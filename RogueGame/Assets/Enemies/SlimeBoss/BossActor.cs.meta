@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d498bbefbf66c004ea5b18fd06fb1268
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - damageResistance: {instanceID: 0}
+  - dungeonManager: {instanceID: 0}
+  - target: {instanceID: 0}
+  - bossStages: {fileID: 11400000, guid: 934a20a56929f4c439518a987639dc98, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

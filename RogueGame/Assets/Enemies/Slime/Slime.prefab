@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3228848969093597954}
-  - component: {fileID: 9021759531206350719}
   - component: {fileID: 8616334961127169798}
+  - component: {fileID: 9021759531206350719}
   - component: {fileID: 3769290622935800435}
   m_Layer: 0
   m_Name: Slime
@@ -34,6 +34,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8616334961127169798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047643110141203037}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf20aedac395b24492516c516d42096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {x: 0, y: 0, z: 0}
+  maxHealth: 1
+  health: 0
+  speed: 4
+  damageResistance: {fileID: 11400000, guid: 5a06c01dbecbbc046a2269aab7bae0f7, type: 2}
+  dungeonManager: {fileID: 0}
+  useNavMeshOnSpawn: 1
+  target: {fileID: 0}
+  damagePerSecond: 50
 --- !u!195 &9021759531206350719
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -56,25 +77,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8616334961127169798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047643110141203037}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecf20aedac395b24492516c516d42096, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  room: {x: 0, y: 0, z: 0}
-  health: 0
-  damageResistance: {fileID: 11400000, guid: 5a06c01dbecbbc046a2269aab7bae0f7, type: 2}
-  dungeonManager: {fileID: 0}
-  Player: {fileID: 0}
-  damagePerSecond: 50
-  MaxHealth: 200
 --- !u!54 &3769290622935800435
 Rigidbody:
   m_ObjectHideFlags: 0
