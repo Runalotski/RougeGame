@@ -296,3 +296,10 @@ D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\NavMeshComponentsEditor.pdb
 D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\NavMeshComponents.pdb
 D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\nunit.framework.pdb
 D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\nunit.framework.xml
+D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\Unity.ProBuilder.pdb
+D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\Unity.ProBuilder.Editor.pdb
+D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\Unity.ProBuilder.AssetIdRemapUtility.pdb
+D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\Unity.ProBuilder.AddOns.Editor.pdb
+D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\Unity.ProBuilder.Poly2Tri.pdb
+D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\Unity.ProBuilder.KdTree.pdb
+D:\UnityGames\RougeGame\RogueGame\Temp\bin\Debug\Unity.ProBuilder.Stl.pdb
