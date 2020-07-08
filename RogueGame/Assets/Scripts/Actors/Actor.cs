@@ -40,7 +40,13 @@ public abstract class Actor : MonoBehaviour
     /// </summary>
     /// <param name="damage">Base damage to take</param>
     /// <param name="damageType">The elemental tpy eof the damage</param>
+    [System.Obsolete("Use Damage class to pass in damage data")]
     public abstract void TakeDamage(float damage, DamageTypes damageType);
+
+    public abstract void TakeDamage(DamageClass damage);
+
+    [HideInInspector]
+    public List<Ability> activeAbilties;
 
     /// <summary>
     /// Called when Acotr is reduced to 0 health or less
@@ -53,5 +59,6 @@ public abstract class Actor : MonoBehaviour
     protected virtual void init()
     {
         health = maxHealth;
+        activeAbilties = new List<Ability>();
     }
 }

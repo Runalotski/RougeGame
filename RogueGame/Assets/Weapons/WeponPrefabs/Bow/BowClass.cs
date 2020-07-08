@@ -21,6 +21,9 @@ public class BowClass : MonoBehaviour, IWeaponClass
     bool canAttack = true;
     private IEnumerator coroutine;
 
+    public float damage;
+    public DamageTypes damageType;
+
     public void Attack()
     {
         if (canAttack)
@@ -41,7 +44,24 @@ public class BowClass : MonoBehaviour, IWeaponClass
 
             }
 
-            Instantiate(projectile, transform.position + (shootDir) - new Vector3(0, 1.5f, 0), Quaternion.Euler(0, angle, 0));
+            Transform clone = Instantiate(projectile, transform.position + (shootDir) - new Vector3(0, 1.5f, 0), Quaternion.Euler(0, angle, 0)) as Transform;
+            clone.GetComponent<BowProjectileScript>().damage = new DamageClass(damage, damageType);
+
+            if(owner.GetComponent<Actor>().activeAbilties.Count > 0)
+            {
+                foreach(DamageModifier abi in owner.GetComponent<Actor>().activeAbilties)
+                {
+                    if(abi.isActive)
+                    {
+                        DamageClass cloneDam = clone.GetComponent<BowProjectileScript>().damage;
+
+                        cloneDam = abi.ApplyDamageMod(cloneDam);
+
+                        clone.GetComponent<BowProjectileScript>().damage = cloneDam;
+                    }
+                }
+            }
+
             canAttack = false;
             StartCoroutine(AttackTimer());
         }   

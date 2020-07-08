@@ -4,16 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-//https://www.youtube.com/watch?v=bvRKfLPqQ0Q&list=WL&index=10&t=2016s
+//https://www.youtube.com/watch?v=bvRKfLPqQ0Q
 
 public class AbilityCoolDown : MonoBehaviour
 {
-    public string abilityButtonAxisName = "Fire1";
+    public string abilityButtonAxisName = "Ability1";
     public Image darkMask;
     public Text coolDownTextDisplay;
 
     [SerializeField] private Ability ability;
-    [SerializeField] private GameObject weaponHolder; //Gun holds the raycast
 
     private Image myButtonImage;
     private AudioSource abilitySource;
@@ -25,19 +24,19 @@ public class AbilityCoolDown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Initialise(ability, weaponHolder);
+        Initialise(ability);
     }
 
-    public void Initialise(Ability selectedAbility, GameObject weaponHolder)
+    public void Initialise(Ability selectedAbility)
     {
         ability = selectedAbility;
         myButtonImage = GetComponent<Image>();
         abilitySource = GetComponent<AudioSource>();
 
-        myButtonImage.sprite = ability.aSprite;
-        darkMask.sprite = ability.aSprite;
+        //myButtonImage.sprite = ability.aSprite;
+        //darkMask.sprite = ability.aSprite;
         coolDownDuration = ability.aBaseCoolDown;
-        ability.Initialise();
+        ability.Initialise(GameObject.FindGameObjectWithTag("Player").GetComponent<Actor>());
         AbilityReady();
     }
 
@@ -48,7 +47,9 @@ public class AbilityCoolDown : MonoBehaviour
 
         if(coolDownComplete)
         {
+            
             AbilityReady();
+
             if(Input.GetButtonDown(abilityButtonAxisName))
             {
                 ButtonTriggerd();
@@ -64,6 +65,7 @@ public class AbilityCoolDown : MonoBehaviour
     {
         coolDownTextDisplay.enabled = false;
         darkMask.enabled = false;
+        ability.isActive = false;
     }
 
     void CoolDown()
@@ -82,7 +84,8 @@ public class AbilityCoolDown : MonoBehaviour
 
         darkMask.enabled = true;
         coolDownTextDisplay.enabled = true;
+        ability.isActive = true;
 
-        ability.TriggerAbility(weaponHolder);
+        ability.TriggerAbility();
     }
 }

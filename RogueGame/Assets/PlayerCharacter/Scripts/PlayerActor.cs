@@ -22,6 +22,11 @@ public class PlayerActor : Actor
             Die();
     }
 
+    public override void TakeDamage(DamageClass damage)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void Die()
     {
         gameManager.PlayerDied();
@@ -36,4 +41,5 @@ public class PlayerActor : Actor
     {
         throw new System.NotImplementedException();
     }
+
 }

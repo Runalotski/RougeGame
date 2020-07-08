@@ -157,3 +157,5 @@ MonoBehaviour:
   projectile: {fileID: 1255940035986410291, guid: a95c7542fbadce94f91735a494789a94,
     type: 3}
   _attackSpeed: 3
+  damage: 10
+  damageType: 3

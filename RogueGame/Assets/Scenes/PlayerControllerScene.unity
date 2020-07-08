@@ -924,11 +924,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8272d9ecd3de635498d47c0e42bb82fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityButtonAxisName: Fire1
+  abilityButtonAxisName: Ability1
   darkMask: {fileID: 1757062038}
   coolDownTextDisplay: {fileID: 390030574}
-  ability: {fileID: 11400000, guid: f15f671fa4acd4d47868ceb07601611c, type: 2}
-  weaponHolder: {fileID: 0}
+  ability: {fileID: 11400000, guid: 848f06522f0fbab4db17b4eba59a3bae, type: 2}
 --- !u!114 &1678673258
 MonoBehaviour:
   m_ObjectHideFlags: 0

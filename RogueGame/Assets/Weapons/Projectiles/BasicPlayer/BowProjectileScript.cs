@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class BowProjectileScript : MonoBehaviour
 {
-
+    
     public float speed;
-    public float baseDamage;
-    public DamageTypes damageType;
+
+    public DamageClass damage;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class BowProjectileScript : MonoBehaviour
     {
         if(col.transform.root.tag == "Enemy")
         {
-            col.transform.root.GetComponent<MonsterActor>().TakeDamage(baseDamage, damageType);
+            col.transform.root.GetComponent<MonsterActor>().TakeDamage(damage);
             Destroy(this.gameObject);
         }
     }

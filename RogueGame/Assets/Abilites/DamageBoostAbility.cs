@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu (menuName = "Ability/DamageBoost")]
-public class DamageBoost : Ability
+public class DamageModifier : Ability
 {
-    float damageMultiplyer = 2f;
+    public float damageMultiplyer = 2f;
+    public float damageShift = 1f;
 
-    public override void Initialise()
+    //Add the multiplied damage to the base.
+    public DamageClass ApplyDamageMod(DamageClass damage)
     {
-        //throw new System.NotImplementedException();
+        damage.damageMultiplyer += damageMultiplyer;
+        damageShift += damageShift;
+
+        return damage;
+    }
+    
+    public override void Initialise(Actor actor)
+    {
+        actor.activeAbilties.Add(this);
     }
 
-    public override void TriggerAbility(GameObject obj)
+    public override void TriggerAbility()
     {
-        //throw new System.NotImplementedException();
+        
     }
 }
