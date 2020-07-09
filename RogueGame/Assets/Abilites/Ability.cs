@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//https://www.youtube.com/watch?v=bvRKfLPqQ0Q
-
-    /// <summary>
-    /// The base class for all abilities, This my need to branch to be come, Movement Abilities,
-    /// Damage Abilities, Resistance Abilites ect
-    /// </summary>
+/// <summary>
+/// The base class for all abilities, This my need to branch to be come, Movement Abilities,
+/// Damage Abilities, Resistance Abilites ect
+/// </summary>
 public abstract class Ability : ScriptableObject
 {
     public string aName = "new ability";

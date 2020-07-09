@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: StupidShitAgain
+  m_Name: DamageBoost
   m_EditorClassIdentifier: Assembly-CSharp::DamageModifier
   aName: new ability
-  aBaseCoolDown: 5
-  aBaseActiveTime: 5
+  aBaseCoolDown: 30
+  aBaseActiveTime: 10
   isActive: 0
   damageMultiplyer: 5
   damageShift: 0

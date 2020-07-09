@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (menuName = "Ability/DamageBoost")]
+[CreateAssetMenu (menuName = "Ability/DamageModifier")]
 public class DamageModifier : Ability
 {
     public float damageMultiplyer = 2f;
@@ -24,6 +24,6 @@ public class DamageModifier : Ability
 
     public override void TriggerAbility()
     {
-        
+        isActive = true;
     }
 }

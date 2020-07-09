@@ -19,6 +19,7 @@ public class AbilityCoolDown : MonoBehaviour
     private float coolDownDuration;
     private float nextReadyTime;
     private float coolDownTimeLeft;
+    private float activeTime;
 
 
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class AbilityCoolDown : MonoBehaviour
         //myButtonImage.sprite = ability.aSprite;
         //darkMask.sprite = ability.aSprite;
         coolDownDuration = ability.aBaseCoolDown;
+        activeTime = ability.aBaseActiveTime;
         ability.Initialise(GameObject.FindGameObjectWithTag("Player").GetComponent<Actor>());
         AbilityReady();
     }
@@ -47,7 +49,6 @@ public class AbilityCoolDown : MonoBehaviour
 
         if(coolDownComplete)
         {
-            
             AbilityReady();
 
             if(Input.GetButtonDown(abilityButtonAxisName))
@@ -66,6 +67,7 @@ public class AbilityCoolDown : MonoBehaviour
         coolDownTextDisplay.enabled = false;
         darkMask.enabled = false;
         ability.isActive = false;
+        myButtonImage.material.color = new Color(1, 1, 1);
     }
 
     void CoolDown()
@@ -75,6 +77,13 @@ public class AbilityCoolDown : MonoBehaviour
         coolDownTextDisplay.text = roundedCD.ToString();
 
         darkMask.fillAmount = (coolDownTimeLeft / coolDownDuration);
+
+        //ability time has rune out
+        if((coolDownDuration - coolDownTimeLeft) >= activeTime)
+        {
+            ability.isActive = false;
+            myButtonImage.material.color = new Color(1, 1, 1);
+        }
     }
 
     void ButtonTriggerd()
@@ -84,8 +93,9 @@ public class AbilityCoolDown : MonoBehaviour
 
         darkMask.enabled = true;
         coolDownTextDisplay.enabled = true;
-        ability.isActive = true;
 
         ability.TriggerAbility();
+
+        myButtonImage.material.color = new Color(0, 1, 0);
     }
 }
