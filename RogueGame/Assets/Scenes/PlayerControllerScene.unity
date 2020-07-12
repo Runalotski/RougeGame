@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1087894784}
-  StartWeapon: {fileID: 6291732143285134023, guid: ede8074820d835c46a1885b28ada1749,
+  StartWeapon: {fileID: 4599990393867037184, guid: fba9802c9d800544882462525f9cd853,
     type: 3}
   gameManager: {fileID: 912974947}
   displayMenu: 0
