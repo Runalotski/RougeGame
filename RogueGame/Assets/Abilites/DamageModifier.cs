@@ -19,7 +19,8 @@ public class DamageModifier : Ability
     
     public override void Initialise(Actor actor)
     {
-        actor.activeAbilties.Add(this);
+        actor.equippedDamageModifiers.Add(this);
+        owner = actor;
     }
 
     public override void TriggerAbility()

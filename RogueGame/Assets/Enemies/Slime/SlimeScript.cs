@@ -33,6 +33,6 @@ public class SlimeScript : MonsterActor
     {
         //if we collide with the player deal damage to it
         if (collision.transform.root.tag == "Player")
-            collision.transform.root.GetComponent<PlayerActor>().TakeDamage(damagePerSecond * Time.deltaTime, DamageTypes.Poison);
+            collision.transform.root.GetComponent<PlayerActor>().TakeDamage(new DamageClass(damagePerSecond * Time.deltaTime, DamageTypes.Poison));
     }
 }

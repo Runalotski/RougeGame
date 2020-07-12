@@ -51,9 +51,12 @@ MonoBehaviour:
   health: 0
   speed: 4
   damageResistance: {fileID: 11400000, guid: 5a06c01dbecbbc046a2269aab7bae0f7, type: 2}
+  equippedAbilties: []
+  equippedDamageModifiers: []
   dungeonManager: {fileID: 0}
   useNavMeshOnSpawn: 1
   target: {fileID: 0}
+  boundsCollider: {fileID: 3278948862925498174}
   damagePerSecond: 50
 --- !u!195 &9021759531206350719
 NavMeshAgent:

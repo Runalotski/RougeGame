@@ -130,6 +130,7 @@ public class BossStages : ScriptableObject
     public void AddActiveEntityToCurrentStage(Transform t)
     {
         stages[currentStageCount].activeEntities.Add(t);
+        
     }
 
     public bool AreallStagescompleted()

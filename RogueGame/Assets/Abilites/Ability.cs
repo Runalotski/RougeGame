@@ -8,6 +8,9 @@ using UnityEngine;
 /// </summary>
 public abstract class Ability : ScriptableObject
 {
+    [HideInInspector]
+    public Actor owner;
+
     public string aName = "new ability";
     //public Sprite aSprite;
 

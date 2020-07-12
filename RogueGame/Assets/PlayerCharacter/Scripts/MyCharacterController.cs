@@ -6,6 +6,7 @@ public class MyCharacterController : MonoBehaviour
 {
     Animator anim;
     CharacterController charController;
+    PlayerActor playerActor;
 
     Vector3 lastVec = Vector3.forward;
 
@@ -17,6 +18,7 @@ public class MyCharacterController : MonoBehaviour
         anim = GetComponent<Animator>();
         charController = GetComponent<CharacterController>();
         anim.applyRootMotion = false;
+        playerActor = GetComponent<PlayerActor>();
     }
 
     // Update is called once per frame
@@ -39,5 +41,7 @@ public class MyCharacterController : MonoBehaviour
         }
 
         transform.forward = lastVec;
+
+        playerActor.UpdateCurrentRoom();
     }
 }

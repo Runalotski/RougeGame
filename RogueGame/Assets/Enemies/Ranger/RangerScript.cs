@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RangerScript : MonsterActor
+public class RangerScript : MonsterActor, IWeaponUser
 {
-    public Transform projectile;
+    public Transform SpawnWeaponPrefab;
 
-    bool canAttack = false;
-    //private IEnumerator coroutine;
+    public List<Transform> CarriedWeapons { get; set; }
+    public int MaxCarriedWeapons { get; set; }
+    public IWeapon ActiveWeapon { get; set; }
 
-    /// <summary>
-    /// How many times a second will the wepon attack
-    /// </summary>
-    public float _attackSpeed;
-    public float attackSpeed { get { return _attackSpeed; } set { _attackSpeed = value; } }
+    enum TargetType { TargetLocation, PredictTarget}
+
+    private TargetType TargetingStratergy;
+
+    private Vector3 TargetPositionLastFrame;
+
+    Vector3 tragetNextPosEst;
 
     private void Awake()
     {
+        int rnd = Random.Range(0, 2);
+
+        TargetingStratergy = rnd == 0 ? TargetType.PredictTarget : TargetType.TargetLocation;
+
         init();
     }
 
@@ -25,45 +32,100 @@ public class RangerScript : MonsterActor
     void Start()
     {
         target = dungeonManager.PlayerTransform();
-        StartCoroutine(AttackTimer());
+        TargetPositionLastFrame = target.position;
+
+        WeaponUserInit();
+
+        Transform spawnWep = Instantiate(SpawnWeaponPrefab) as Transform;
+        PickUpWeapon(spawnWep);
     }
 
     // Update is called once per frame
     void Update()
     {
         //If player target is in the same 2room attack it.
-        if (agent.enabled && target != null && dungeonManager.PlayerDungeonPos() == room && canAttack)
+        if (AttackedShouldTrigger())
+            Attack("Player");
+
+        Vector3 targetMoveVec = target.position - TargetPositionLastFrame;
+
+        float targetDist = (target.position - transform.position).magnitude;
+
+        tragetNextPosEst = target.position + (targetMoveVec * (targetDist));
+
+    }
+
+    void LateUpdate()
+    {
+        TargetPositionLastFrame = target.position;
+    }
+
+    public bool AttackedShouldTrigger()
+    {
+        return agent.enabled && target != null && dungeonManager.PlayerDungeonPos() == room && !ActiveWeapon.WeaponWaitingForCooldown;
+    }
+
+    public void Attack(string targetTag)
+    {
+        agent.destination = dungeonManager.PlayerTransform().position;
+        agent.isStopped = false;
+
+        switch (TargetingStratergy)
         {
-                Vector3 shootDir = Vector3.zero;
-                float angle = 0;
+            case TargetType.TargetLocation:
+                ActiveWeapon.WeaponAttack(transform.position, target.position, targetTag);
+                break;
 
-                shootDir = target.position - transform.position;
-                shootDir.y = 0;
-                shootDir.Normalize();
-                angle = Mathf.Acos(Vector3.Dot(Vector3.forward, shootDir)) * Mathf.Rad2Deg;
+            case TargetType.PredictTarget:
 
-                if (target.position.x < transform.position.x)
-                    angle = 360 - angle;
+                Vector3 targetMoveVec = target.position - TargetPositionLastFrame;
+
+                float targetDist = (target.position - transform.position).magnitude;
+
+                tragetNextPosEst = target.position + (targetMoveVec * (targetDist * 1.6f)) ;
 
 
-                Instantiate(projectile, transform.position + (shootDir) + new Vector3(0, 0.5f, 0), Quaternion.Euler(0, angle, 0));
-                canAttack = false;
-                StartCoroutine(AttackTimer());
-
-                agent.destination = dungeonManager.PlayerTransform().position;
-                agent.isStopped = false;
+                ActiveWeapon.WeaponAttack(transform.position, tragetNextPosEst, targetTag);
+                break;
         }
     }
 
-    /// <summary>
-    /// Delay until next attack
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator AttackTimer()
+    void OnDrawGizmos()
     {
-        yield return new WaitForSeconds(1 / _attackSpeed);
-        canAttack = true;
-        yield return null;
 
+        Gizmos.color = new Color(1, 0, 0);
+        Gizmos.DrawCube(tragetNextPosEst, new Vector3(0.3f, 0.3f, 0.3f));
+    }
+
+    public void SwitchWeapon()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void DropWeapon()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void PickUpWeapon(Transform weaponT)
+    {
+        if (ActiveWeapon == null)
+        {
+            CarriedWeapons.Add(weaponT);
+            ActiveWeapon = weaponT.root.GetComponent<IWeapon>();
+
+            ActiveWeapon.WeaponOwner = this.transform;
+            ActiveWeapon.WeaponTransform = weaponT;
+
+            weaponT.parent = this.transform;
+            weaponT.position = transform.position + new Vector3(0, 2, 0);
+            weaponT.rotation = Quaternion.identity;
+        }
+    }
+
+    public void WeaponUserInit()
+    {
+        MaxCarriedWeapons = 1;
+        CarriedWeapons = new List<Transform>();
     }
 }

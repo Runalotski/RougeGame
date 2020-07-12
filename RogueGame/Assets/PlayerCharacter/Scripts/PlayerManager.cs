@@ -6,13 +6,14 @@ public class PlayerManager : MonoBehaviour
 {
     public Transform player;
 
-    float maxHealth = 100;
-
     public Transform StartWeapon;
 
     public Transform gameManager;
 
     public bool displayMenu = false;
+
+    public Transform ActiveWeapon { get; set; }
+    public List<Transform> CarriedWeapons { get; set; }
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class PlayerManager : MonoBehaviour
         if (StartWeapon != null)
         {
             Transform weapon = Instantiate(StartWeapon);
-            player.GetComponent<HandleWeapons>().PickupWeapon(weapon);
+            player.GetComponent<IWeaponUser>().PickUpWeapon(weapon);
         }
     }
 
@@ -51,10 +52,10 @@ public class PlayerManager : MonoBehaviour
         {
             string msg = GameManager.playerDead ? "Game Over :(" : "You Win :D";
 
-            GUI.TextArea(new Rect(endScreenPosX, endScreenPosY, endScreenX, endScreenY), msg + " " + System.Math.Round(GameManager.respawnCounter,1));
+            GUI.TextArea(new Rect(endScreenPosX, endScreenPosY, endScreenX, endScreenY), msg + " " + System.Math.Round(GameManager.respawnCounter, 1));
         }
 
-        if(displayMenu)
+        if (displayMenu)
         {
             if (GUI.Button(new Rect(130, 10, 150, 20), "Quit"))
             {

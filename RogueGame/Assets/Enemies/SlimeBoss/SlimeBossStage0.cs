@@ -72,7 +72,7 @@ public class SlimeBossStage0 : MonsterActor, IBossStageEntity
         //if we collide with the player deal damage to it
         if (collision.transform.root.tag == "Player" && !hitPlayerThisFrame)
         {
-            collision.transform.root.GetComponent<PlayerActor>().TakeDamage(damagePerHit, DamageTypes.Poison);
+            collision.transform.root.GetComponent<PlayerActor>().TakeDamage(new DamageClass(damagePerHit, DamageTypes.Poison));
             hitPlayerThisFrame = transform;
         }
     }
@@ -100,10 +100,10 @@ public class SlimeBossStage0 : MonsterActor, IBossStageEntity
         EntityDeath(gameObject);
     }
 
-    public override void TakeDamage(float damage, DamageTypes damageType)
+    public override void TakeDamage(DamageClass damage)
     {
-        ApplyDamageToParentBoss(damageResistance.CalculateDamagetoTake(damage, damageType));
-        base.TakeDamage(damage, damageType);
+        ApplyDamageToParentBoss(damageResistance.CalculateDamagetoTake(damage.baseDamage, damage.damageType));
+        base.TakeDamage(damage);
     }
 
     public void ApplyDamageToParentBoss(float damage)

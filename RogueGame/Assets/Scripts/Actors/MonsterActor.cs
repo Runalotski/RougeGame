@@ -24,14 +24,7 @@ public abstract class MonsterActor : Actor
     /// </summary>
     public Transform target;
 
-    [System.Obsolete("Use Damage class to pass in damage data")]
-    public override void TakeDamage(float damage, DamageTypes damageType)
-    {
-        health -= damageResistance.CalculateDamagetoTake(damage, damageType);
-
-        if (health <= 0)
-            Die();
-    }
+    public Transform boundsCollider;
 
     public override void TakeDamage(DamageClass damage)
     {

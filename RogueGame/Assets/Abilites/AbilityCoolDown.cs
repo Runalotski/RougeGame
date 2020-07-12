@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-//https://www.youtube.com/watch?v=bvRKfLPqQ0Q
-
 public class AbilityCoolDown : MonoBehaviour
 {
-    public string abilityButtonAxisName = "Ability1";
+    public string abilityButtonAxisName;
     public Image darkMask;
     public Text coolDownTextDisplay;
 
-    [SerializeField] private Ability ability;
+    public Ability ability;
 
     private Image myButtonImage;
     private AudioSource abilitySource;
@@ -31,7 +28,7 @@ public class AbilityCoolDown : MonoBehaviour
     public void Initialise(Ability selectedAbility)
     {
         ability = selectedAbility;
-        myButtonImage = GetComponent<Image>();
+        myButtonImage = transform.GetComponent<Image>();
         abilitySource = GetComponent<AudioSource>();
 
         //myButtonImage.sprite = ability.aSprite;
@@ -56,6 +53,10 @@ public class AbilityCoolDown : MonoBehaviour
                 ButtonTriggerd();
             }
         }
+        else if(DungeonManager.dungeonData.grid[(int)ability.owner.room.x, (int)ability.owner.room.z].enemiesCleard)
+        {
+            nextReadyTime += Time.deltaTime;
+        }
         else
         {
             CoolDown();
@@ -67,7 +68,7 @@ public class AbilityCoolDown : MonoBehaviour
         coolDownTextDisplay.enabled = false;
         darkMask.enabled = false;
         ability.isActive = false;
-        myButtonImage.material.color = new Color(1, 1, 1);
+        myButtonImage.color = new Color(1, 1, 1);
     }
 
     void CoolDown()
@@ -79,10 +80,10 @@ public class AbilityCoolDown : MonoBehaviour
         darkMask.fillAmount = (coolDownTimeLeft / coolDownDuration);
 
         //ability time has rune out
-        if((coolDownDuration - coolDownTimeLeft) >= activeTime)
+        if ((coolDownDuration - coolDownTimeLeft) >= activeTime)
         {
             ability.isActive = false;
-            myButtonImage.material.color = new Color(1, 1, 1);
+            myButtonImage.color = new Color(1, 1, 1);
         }
     }
 
@@ -96,6 +97,6 @@ public class AbilityCoolDown : MonoBehaviour
 
         ability.TriggerAbility();
 
-        myButtonImage.material.color = new Color(0, 1, 0);
+        myButtonImage.color = new Color(0, 1, 0);
     }
 }

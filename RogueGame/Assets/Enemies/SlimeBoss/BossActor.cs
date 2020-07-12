@@ -76,5 +76,6 @@ public abstract class BossActor : MonsterActor
         Transform stageEntity = Instantiate(prefab, spawnPosition, Quaternion.identity);
         stageEntity.GetComponent<IBossStageEntity>().ParentBoss = this.GetComponent<BossActor>();
         bossStages.AddActiveEntityToCurrentStage(stageEntity);
+        DungeonManager.dungeonData.grid[(int)room.x, (int)room.z].enemies.Add(stageEntity);
     }
 }

@@ -7,6 +7,7 @@ public class PlayerActor : Actor
     public Transform playerManager;
     PlayerManager manager;
     GameManager gameManager;
+    public DungeonManager dungeonManager;
 
     private void Awake()
     {
@@ -14,17 +15,12 @@ public class PlayerActor : Actor
         gameManager = playerManager.GetComponent<PlayerManager>().gameManager.GetComponent<GameManager>();
     }
 
-    public override void TakeDamage(float damage, DamageTypes damageType)
+    public override void TakeDamage(DamageClass damage)
     {
-        health -= damageResistance.CalculateDamagetoTake(damage, damageType);
+        health -= damageResistance.CalculateDamagetoTake(damage.baseDamage, damage.damageType);
 
         if (health <= 0)
             Die();
-    }
-
-    public override void TakeDamage(DamageClass damage)
-    {
-        throw new System.NotImplementedException();
     }
 
     public override void Die()
@@ -41,5 +37,10 @@ public class PlayerActor : Actor
     {
         throw new System.NotImplementedException();
     }
+
+    public void UpdateCurrentRoom()
+    {
+        room = dungeonManager.PlayerDungeonPos();
+    }   
 
 }

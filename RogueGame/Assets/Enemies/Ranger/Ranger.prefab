@@ -51,12 +51,15 @@ MonoBehaviour:
   health: 0
   speed: 0
   damageResistance: {fileID: 11400000, guid: f26ada36012b1e041a9c590d06c3799b, type: 2}
+  equippedAbilties: []
+  equippedDamageModifiers: []
   dungeonManager: {fileID: 0}
   useNavMeshOnSpawn: 1
   target: {fileID: 0}
-  projectile: {fileID: 1255940035986410291, guid: 327314ae3e93ab243939f466a170705b,
+  boundsCollider: {fileID: 8718225493722231435}
+  SpawnWeaponPrefab: {fileID: 6291732143285134023, guid: e30840292f31c754b8187c8ccf164122,
     type: 3}
-  _attackSpeed: 1
+  TargetingStratergy: 1
 --- !u!195 &343634927768845375
 NavMeshAgent:
   m_ObjectHideFlags: 0

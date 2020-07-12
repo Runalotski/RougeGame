@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 216e6904f0a1e3c4692dcaa7586f44a8, type: 3}
   m_Name: DamageBoost
   m_EditorClassIdentifier: Assembly-CSharp::DamageModifier
-  aName: new ability
+  owner: {fileID: 0}
+  aName: DamageBoost
   aBaseCoolDown: 30
-  aBaseActiveTime: 10
+  aBaseActiveTime: 15
   isActive: 0
-  damageMultiplyer: 5
+  damageMultiplyer: 2
   damageShift: 0

@@ -50,6 +50,7 @@ MonoBehaviour:
   health: 0
   speed: 0
   damageResistance: {fileID: 11400000, guid: 5a06c01dbecbbc046a2269aab7bae0f7, type: 2}
+  activeAbilties: []
   dungeonManager: {fileID: 0}
   useNavMeshOnSpawn: 0
   target: {fileID: 0}
