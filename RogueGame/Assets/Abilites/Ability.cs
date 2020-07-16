@@ -12,7 +12,7 @@ public abstract class Ability : ScriptableObject
     public Actor owner;
 
     public string aName = "new ability";
-    //public Sprite aSprite;
+    public Sprite aSprite;
 
     //The audio clip will be used at some point when we want a sound to trigger
     //public AudioClip aSound;

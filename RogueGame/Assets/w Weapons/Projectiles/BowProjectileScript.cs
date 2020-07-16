@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BowProjectileScript : MonoBehaviour
 {
+
+    public bool playerProjectile;
     
     public float speed;
 
@@ -16,6 +18,8 @@ public class BowProjectileScript : MonoBehaviour
         Destroy(this.gameObject, 10);
         this.targetTag = targetTag;
         this.damage = damage;
+
+        playerProjectile = (targetTag == "Enemy");
     }
 
     // Update is called once per frame
