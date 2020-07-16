@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageModifier
   owner: {fileID: 0}
   aName: DamageBoost
+  aSprite: {fileID: 21300000, guid: 92fe578065ce39b40bc6ac4919c9e9dd, type: 3}
   aBaseCoolDown: 30
   aBaseActiveTime: 15
-  isActive: 0
+  isActive: 1
   damageMultiplyer: 2
   damageShift: 0

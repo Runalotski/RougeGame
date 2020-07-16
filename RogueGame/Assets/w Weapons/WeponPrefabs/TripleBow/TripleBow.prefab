@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1255940035986410291, guid: a95c7542fbadce94f91735a494789a94,
     type: 3}
-  numberOfShots: 5
-  spreadAngle: 30
+  numberOfShots: 3
+  spreadAngle: -2
   _attackSpeed: 2
   damage: 10
   damageType: 0
