@@ -725,7 +725,7 @@ MonoBehaviour:
   dungeonRenderer: {fileID: 2085462802}
   dungeonType: 1
   DungeonScale: 40
-  RoomCount: 7
+  RoomCount: 15
   DungeonParent: {fileID: 211982950}
   Mobspawner: {fileID: 849577674}
   doors: {fileID: 3254350612774488651}

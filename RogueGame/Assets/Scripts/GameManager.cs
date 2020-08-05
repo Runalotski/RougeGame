@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
             deathTime = Time.timeSinceLevelLoad;
             gameOver = true;
             playerDead = true;
-            StartCoroutine(DisplayEndMessage());
+            SceneManager.LoadScene("HubWorld", LoadSceneMode.Single);
         }
     }
 
@@ -64,8 +64,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DisplayEndMessage()
     {
+        //This is used to add a delay before spawning the player for displaying a message
         yield return new WaitForSeconds(respawnTime);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("HubWorld", LoadSceneMode.Single);
         yield return null;
 
     }
