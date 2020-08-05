@@ -42,24 +42,28 @@ public class AbilityCoolDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool coolDownComplete = (Time.time > nextReadyTime);
-
-        if(coolDownComplete)
+        //We wont have dungeon data in the hub world
+        if (DungeonManager.dungeonData != null)
         {
-            AbilityReady();
+            bool coolDownComplete = (Time.time > nextReadyTime);
 
-            if(Input.GetButtonDown(abilityButtonAxisName))
+            if (coolDownComplete)
             {
-                ButtonTriggerd();
+                AbilityReady();
+
+                if (Input.GetButtonDown(abilityButtonAxisName))
+                {
+                    ButtonTriggerd();
+                }
             }
-        }
-        else if(DungeonManager.dungeonData.grid[(int)ability.owner.room.x, (int)ability.owner.room.z].enemiesCleard)
-        {
-            nextReadyTime += Time.deltaTime;
-        }
-        else
-        {
-            CoolDown();
+            else if (DungeonManager.dungeonData.grid[(int)ability.owner.room.x, (int)ability.owner.room.z].enemiesCleard)
+            {
+                nextReadyTime += Time.deltaTime;
+            }
+            else
+            {
+                CoolDown();
+            }
         }
     }
 

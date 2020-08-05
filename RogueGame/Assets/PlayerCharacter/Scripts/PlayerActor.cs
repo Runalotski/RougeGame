@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class PlayerActor : Actor
 {
-    public Transform playerManager;
-    PlayerManager manager;
-    GameManager gameManager;
+    //public Transform playerManager;
+    //PlayerManager manager;
+    public GameManager gameManager;
     public DungeonManager dungeonManager;
 
-    private void Awake()
+    public Transform StartWeapon;
+
+    [HideInInspector]
+    public Transform ActiveWeapon { get; set; }
+
+    [HideInInspector]
+    public List<Transform> CarriedWeapons { get; set; }
+
+    private void Start()
     {
-        manager = playerManager.GetComponent<PlayerManager>();
-        gameManager = playerManager.GetComponent<PlayerManager>().gameManager.GetComponent<GameManager>();
+
+        if (StartWeapon != null)
+        {
+            Transform weapon = Instantiate(StartWeapon);
+            GetComponent<IWeaponUser>().PickUpWeapon(weapon);
+        }
     }
 
     public override void TakeDamage(DamageClass damage)
@@ -25,12 +37,14 @@ public class PlayerActor : Actor
 
     public override void Die()
     {
-        gameManager.PlayerDied();
+        //We may not have game manager in the Hub world
+        if (gameManager != null)
+        {
+            gameManager.PlayerDied();
 
-        GetComponent<MyCharacterController>().enabled = false;
-        
+            GetComponent<MyCharacterController>().enabled = false;
 
-        //Destroy(gameObject);
+        }
     }
 
     protected override void init()
@@ -40,7 +54,11 @@ public class PlayerActor : Actor
 
     public void UpdateCurrentRoom()
     {
-        room = dungeonManager.PlayerDungeonPos();
+        //We may not have dungeon manager in the Hub world
+        if (dungeonManager != null)
+        {
+            room = dungeonManager.PlayerDungeonPos();
+        }
     }   
 
 }

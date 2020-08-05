@@ -795,6 +795,8 @@ GameObject:
   - component: {fileID: 5453794302048335689}
   - component: {fileID: 5453794302048335691}
   - component: {fileID: 800796427890742587}
+  - component: {fileID: 863748883}
+  - component: {fileID: 863748884}
   m_Layer: 0
   m_Name: Ethan
   m_TagString: Player
@@ -894,8 +896,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {x: 0, y: 0, z: 0}
+  maxHealth: 0
+  health: 100
+  speed: 0
   damageResistance: {fileID: 11400000, guid: 606daf075284dbb4caa5c87be4c36924, type: 2}
+  equippedAbilties: []
+  equippedDamageModifiers: []
   playerManager: {fileID: 0}
+  dungeonManager: {fileID: 0}
+--- !u!114 &863748883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453794301185218919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b0ca6c18d43f8478cb92518a8b7a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityIconRegion: {fileID: 0}
+  AbilityIconPrefab: {fileID: 1260992277433788333, guid: 31970cb60a85b524ba54f10a2f47156e,
+    type: 3}
+  abilities:
+  - {fileID: 11400000, guid: 295011171734b314ebb9cfac1fecb1b1, type: 2}
+  - {fileID: 11400000, guid: 848f06522f0fbab4db17b4eba59a3bae, type: 2}
+--- !u!114 &863748884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453794301185218919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd850481981d524f8085718538c4d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5453794301185218929
 GameObject:
   m_ObjectHideFlags: 0
