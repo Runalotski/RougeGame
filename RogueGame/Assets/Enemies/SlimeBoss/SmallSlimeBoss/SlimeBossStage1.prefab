@@ -57,6 +57,7 @@ MonoBehaviour:
   useNavMeshOnSpawn: 0
   target: {fileID: 0}
   boundsCollider: {fileID: 3086221726314796144}
+  xpReward: 50
   damagePerHit: 75
 --- !u!54 &6590869855966256211
 Rigidbody:

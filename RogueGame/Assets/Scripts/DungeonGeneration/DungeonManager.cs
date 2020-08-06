@@ -37,6 +37,10 @@ public class DungeonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Player keeps falling through the world on load scense sometimes....
+        //Wil try disabling CC incase that is problem in longer dungeon creation times
+        DisablePlayer();
+
         doors.GetChild(0).localScale = new Vector3(DungeonScale, DungeonScale, DungeonScale);
 
         Random.InitState((int)System.DateTime.Now.Ticks);
@@ -61,8 +65,23 @@ public class DungeonManager : MonoBehaviour
 
         Mobspawner.GetComponent<MobSpawner>().SpawnAllMobsInDungeon(Mobrooms, dungeonData.bossRoom, dungeonScale);
 
-        player.position = new Vector3(dungeonData.SpawnPoint.x * DungeonScale, 0, dungeonData.SpawnPoint.z * DungeonScale);
+        Vector3 playerSpawnPos = new Vector3(dungeonData.SpawnPoint.x * DungeonScale, 0.1f, dungeonData.SpawnPoint.z * DungeonScale);
 
+        player.position = playerSpawnPos;
+        Debug.Log("SPawning the Player at " + playerSpawnPos);
+
+        EnablePlayer();
+
+    }
+
+    private void DisablePlayer()
+    {
+        player.GetComponent<CharacterController>().enabled = false;
+    }
+
+    private void EnablePlayer()
+    {
+        player.GetComponent<CharacterController>().enabled = true;
     }
 
     private void Update()

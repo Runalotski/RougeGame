@@ -57,9 +57,9 @@ MonoBehaviour:
   useNavMeshOnSpawn: 1
   target: {fileID: 0}
   boundsCollider: {fileID: 8718225493722231435}
+  xpReward: 10
   SpawnWeaponPrefab: {fileID: 6291732143285134023, guid: e30840292f31c754b8187c8ccf164122,
     type: 3}
-  TargetingStratergy: 1
 --- !u!195 &343634927768845375
 NavMeshAgent:
   m_ObjectHideFlags: 0

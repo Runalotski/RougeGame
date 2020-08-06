@@ -26,6 +26,8 @@ public abstract class MonsterActor : Actor
 
     public Transform boundsCollider;
 
+    public int xpReward;
+
     public override void TakeDamage(DamageClass damage)
     {
         health -= damageResistance.CalculateDamagetoTake(damage.TotalDamage, damage.damageType);
@@ -43,6 +45,7 @@ public abstract class MonsterActor : Actor
 
     public override void Die()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActor>().AddXP(xpReward);
         Destroy(gameObject);
     }
 }

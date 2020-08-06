@@ -17,13 +17,37 @@ public class PlayerActor : Actor
     [HideInInspector]
     public List<Transform> CarriedWeapons { get; set; }
 
+    [HideInInspector]
+    public int Level { get; private set; }
+
+    [HideInInspector]
+    public int CurrentXP { get; private set; }
+
+    public int NextLevelXP()
+    {
+        return Level * 100;
+    }
+
     private void Start()
     {
+        Level = 1;
 
         if (StartWeapon != null)
         {
             Transform weapon = Instantiate(StartWeapon);
             GetComponent<IWeaponUser>().PickUpWeapon(weapon);
+        }
+    }
+
+    public void AddXP(int xpGain)
+    {
+        CurrentXP += xpGain;
+
+        //reduce XP to 0 at level up but keep XP spill over
+        if(CurrentXP >= NextLevelXP())
+        {
+            CurrentXP = CurrentXP - NextLevelXP();
+            Level++;
         }
     }
 

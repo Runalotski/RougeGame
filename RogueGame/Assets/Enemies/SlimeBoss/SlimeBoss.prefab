@@ -50,10 +50,13 @@ MonoBehaviour:
   health: 0
   speed: 0
   damageResistance: {fileID: 11400000, guid: 5a06c01dbecbbc046a2269aab7bae0f7, type: 2}
-  activeAbilties: []
+  equippedAbilties: []
+  equippedDamageModifiers: []
   dungeonManager: {fileID: 0}
   useNavMeshOnSpawn: 0
   target: {fileID: 0}
+  boundsCollider: {fileID: 0}
+  xpReward: 10
   bossStages: {fileID: 11400000, guid: 934a20a56929f4c439518a987639dc98, type: 2}
   stageCompleted: 0
 --- !u!195 &198799531293261178
