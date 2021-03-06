@@ -896,14 +896,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {x: 0, y: 0, z: 0}
-  maxHealth: 0
+  maxHealth: 100
   health: 100
   speed: 0
   damageResistance: {fileID: 11400000, guid: 606daf075284dbb4caa5c87be4c36924, type: 2}
   equippedAbilties: []
   equippedDamageModifiers: []
-  playerManager: {fileID: 0}
+  gameManager: {fileID: 0}
   dungeonManager: {fileID: 0}
+  StartWeapon: {fileID: 0}
 --- !u!114 &863748883
 MonoBehaviour:
   m_ObjectHideFlags: 0

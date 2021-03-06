@@ -39,6 +39,7 @@ public class DungeonManager : MonoBehaviour
     {
         //Player keeps falling through the world on load scense sometimes....
         //Wil try disabling CC incase that is problem in longer dungeon creation times
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         DisablePlayer();
 
         doors.GetChild(0).localScale = new Vector3(DungeonScale, DungeonScale, DungeonScale);
@@ -68,7 +69,7 @@ public class DungeonManager : MonoBehaviour
         Vector3 playerSpawnPos = new Vector3(dungeonData.SpawnPoint.x * DungeonScale, 0.1f, dungeonData.SpawnPoint.z * DungeonScale);
 
         player.position = playerSpawnPos;
-        Debug.Log("SPawning the Player at " + playerSpawnPos);
+        Debug.Log("Spawning the Player at " + playerSpawnPos);
 
         EnablePlayer();
 

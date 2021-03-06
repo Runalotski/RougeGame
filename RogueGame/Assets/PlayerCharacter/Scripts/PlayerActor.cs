@@ -23,12 +23,7 @@ public class PlayerActor : Actor
     [HideInInspector]
     public int CurrentXP { get; private set; }
 
-    public int NextLevelXP()
-    {
-        return Level * 100;
-    }
-
-    private void Start()
+    void Start()
     {
         Level = 1;
 
@@ -37,6 +32,11 @@ public class PlayerActor : Actor
             Transform weapon = Instantiate(StartWeapon);
             GetComponent<IWeaponUser>().PickUpWeapon(weapon);
         }
+    }
+
+    public int NextLevelXP()
+    {
+        return Level * 100;
     }
 
     public void AddXP(int xpGain)

@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void Start()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActor>().gameManager = this;
+    }
+
     public void PlayerDied()
     {
         if (enableGameMode && !playerDead && !bossDefeated)

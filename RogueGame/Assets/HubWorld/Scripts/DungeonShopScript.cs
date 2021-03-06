@@ -8,6 +8,6 @@ public class DungeonShopScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
-            SceneManager.LoadScene("PlayerControllerScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("DungeonLevel", LoadSceneMode.Single);
     }
 }

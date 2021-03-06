@@ -55,6 +55,11 @@ public class FollowTarget : MonoBehaviour
 
     bool loggedNoTarget = false;
 
+    private void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     // Update is called once per frame
     void Update(){
 
