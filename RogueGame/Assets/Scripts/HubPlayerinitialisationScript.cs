@@ -30,6 +30,7 @@ public class HubPlayerinitialisationScript : MonoBehaviour
         }
         else
         {
+            //
             player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = Vector3.zero;
             player.GetComponent<CharacterController>().enabled = true;
