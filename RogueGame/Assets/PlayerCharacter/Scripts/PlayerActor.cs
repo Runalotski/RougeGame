@@ -65,9 +65,6 @@ public class PlayerActor : Actor
         if (gameManager != null)
         {
             gameManager.PlayerDied();
-
-            GetComponent<MyCharacterController>().enabled = false;
-
         }
     }
 

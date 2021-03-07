@@ -9,6 +9,7 @@ public class HubPlayerinitialisationScript : MonoBehaviour
     public Transform abilitiesIconRegion;
     public Transform healthBar;
     public Transform xpBar;
+    public Transform mcamera;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,8 @@ public class HubPlayerinitialisationScript : MonoBehaviour
 
             healthBar.GetComponent<HealthBarScript>().player = player.GetComponent<Actor>();
             xpBar.GetComponent<XPBarScript>().player = player.GetComponent<PlayerActor>();
+
+            mcamera.GetComponent<FollowTarget>().target = player.transform;
         }
         else
         {
